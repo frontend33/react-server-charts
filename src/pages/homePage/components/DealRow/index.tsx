@@ -1,14 +1,17 @@
-import * as React from 'react';
+import  React, {useContext} from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import {FC, useCallback} from "react";
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { DealProps } from './index.typings'
 import {DeleteConfirm} from '../DeleteConfirm'
-import {getDeatls} from "../../utils/getDeal";
+import {getDeals} from "../../utils/getDeal";
+import {Context} from '../../../../App'
 
-export const DealRow:FC<DealProps> = ({deal, setDeals}) => {
+export const DealRow:FC<DealProps> = ({deal}) => {
+    const [context, setContext] = useContext(Context);
+
+    const { page } = context
+
     const onDeleteRow = useCallback(() => {
         fetch(`http://localhost:8080/api/newDeal/${deal.id}`, {
             method: 'DELETE',
@@ -17,7 +20,7 @@ export const DealRow:FC<DealProps> = ({deal, setDeals}) => {
             },
         })
             .then((response) => response.json())
-            .then(() => getDeatls(setDeals))
+            .then(() => getDeals({ page, setContext}))
             // .then((response) => console.log(response))
     }, [])
 

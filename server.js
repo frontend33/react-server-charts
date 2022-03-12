@@ -16,23 +16,44 @@ app.use(cors());
 app.use(bodyParser.json())
 
 // Initial set of deals to the database
-var defaultDeals = { deals: [
-    { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 7 },
-    { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 8 },
-    { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 9 }
-]};
+// var defaultDeals = { deals: [
+//     { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 7 },
+//     { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 8 },
+//     { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 9 }
+// ]};
+
+var defaultDeals = {
+    dealsList: [
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 7 },
+        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 8 },
+        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 9 }
+    ],
+    isNext: true
+   };
 
 db.get("deals").defaults(defaultDeals).write()
 
 // Send user data - used by client.js
-app.get("/deals", function(request, response) {
+app.get("/deals", function(request, response, next) {
+    const page = parseInt(request.query.page)
+    const limit = parseInt(request.query.limit)
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
+    // const results = {}
+
     var deals = db.get("deals").value(); // finds all entries in the deals table
-    response.send(deals);
+    console.log(startIndex, endIndex, deals)
+
+    const result = {
+        dealsList: deals?.dealsList?.length ? deals.dealsList.slice(startIndex, endIndex): [],
+        isNext: deals.length >= endIndex
+    }
+    response.send(JSON.stringify(result));
 });
 
 // Create a new deal
 app.post('/newDeal', (request, response) => {
-    const note = request.body
+    const note = request.params
     db.get("deals")
         .push({
         ...note, id: nanoid()

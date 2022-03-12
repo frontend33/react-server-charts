@@ -1,11 +1,24 @@
 {
-  "deals": [
-    {
-      "id": "GAXU_bL9H--qhTzDZtDsf",
-      "date": "2022-03-12T15:16:16.090Z",
-      "value": 9
-    }
-  ],
+  "deals": {
+    "dealsList": [
+      {
+        "id": "GAXU_bL7H--qhTzDZtDsf",
+        "date": "2022-03-12T15:16:16.090Z",
+        "value": 7
+      },
+      {
+        "id": "GAXU_bL8H--qhTzDZtDsf",
+        "date": "2022-03-12T15:16:16.090Z",
+        "value": 8
+      },
+      {
+        "id": "GAXU_bL9H--qhTzDZtDsf",
+        "date": "2022-03-12T15:16:16.090Z",
+        "value": 9
+      }
+    ],
+    "isNext": true
+  },
   "posts": [
     {
       "id": 0,

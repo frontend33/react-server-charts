@@ -1,13 +1,21 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState, useContext } from 'react'
 import './App.css'
 import { TableDeals } from './pages/homePage'
-import { getDeatls } from './pages/homePage/utils/getDeal'
+import { getDeals } from './pages/homePage/utils/getDeal'
+
+export const Context = React.createContext<any>(null)
 
 const App = () => {
-    const [deals, setDeals] = useState([])
+    const [deals, setDeals] = useState({
+        dealsList: [],
+        isNext: true
+    })
+    const [page, setPage] = useState(1)
+
+    const [context, setContext] = useState({ setDeals, page, setPage, deals })
 
     useEffect(() => {
-        getDeatls(setDeals)
+        getDeals({ page, setContext })
     }, [])
 
     const onAddRow = useCallback(() => {
@@ -23,13 +31,15 @@ const App = () => {
     }, [])
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <button onClick={onAddRow}>Added</button>
-            </header>
+        <Context.Provider value={[context, setContext]}>
+            <div className="App">
+                <header className="App-header">
+                    <button onClick={onAddRow}>Added</button>
+                </header>
 
-            <TableDeals deals={deals} setDeals={setDeals}/>
-        </div>
+                <TableDeals />
+            </div>
+        </Context.Provider>
     )
 }
 

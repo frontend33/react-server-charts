@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {getDeatls} from '../../utils/getDeal'
+import {getDeals} from '../../utils/getDeal'
 
 const style = {
   position: 'absolute' as any,

@@ -6,6 +6,5 @@ export type Deal = {
 
 export interface Deals {
     deals: Deal[],
-    setDeals: (value: any) => void;
 }
 

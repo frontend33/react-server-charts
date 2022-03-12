@@ -1,8 +1,30 @@
-import { Dispatch } from 'react';
+import {Deal} from '../index.typings'
 
-export const getDeatls = (setDeals: Dispatch<any>) => {
-    fetch('http://localhost:8080/deals', {
+type GetDealRequest = {
+    setContext: (value: any) => void;
+    page: number;
+    deals?: any;
+}
+
+const limit = 10
+
+export const getDeals = ({ page, deals, setContext }:GetDealRequest) => {
+    fetch(`http://localhost:8080/deals?page=${page}&limit=${limit}`, {
         method: 'get',
     }).then((response) => response.json())
-        .then((response) => setDeals(response))
+        .then((response) => {
+            console.log('deals', deals, response)
+            let dealsList = !!deals?.dealsList.length ? deals.dealsList.concat(response) : response.dealsList
+            let dealsData = {
+                dealsList,
+                isNext: response.isNext
+            }
+
+            setContext((prevState: any) => ({
+                ...prevState,
+                deals: dealsData
+            }));
+            }
+
+        )
 }
