@@ -42,7 +42,7 @@ export const TableDeals:FC = () => {
                 </TableBody>
             </Table>
             {
-                deals.dealsList.isNext && <Button size="small" variant="contained" onClick={onNextClick}>Load next page</Button>
+                deals.isNext && <Button size="small" variant="contained" onClick={onNextClick}>Load next page</Button>
             }
 
         </TableContainer>

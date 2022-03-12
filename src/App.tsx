@@ -27,7 +27,7 @@ const App = () => {
             body: JSON.stringify({ user: 'test' }),
         })
             .then((response) => response.json())
-            .then((response) => console.log(response))
+            .then(() => getDeals({ page, setContext }))
     }, [])
 
     return (
