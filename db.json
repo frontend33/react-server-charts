@@ -16,22 +16,9 @@
   },
   "deals": [
     {
-      "user": "test",
-      "id": "86W0BoU9KpVXzU0s4Gl8q"
-    },
-    {
-      "id": "GAXU_bL8H--qhTzDZtDsf",
-      "date": "2022-03-12T15:16:16.090Z",
-      "value": 8
-    },
-    {
       "id": "GAXU_bL9H--qhTzDZtDsf",
       "date": "2022-03-12T15:16:16.090Z",
       "value": 9
-    },
-    {
-      "user": "test",
-      "id": "uhhAzLYWI_yWxh1q2W_hg"
     }
   ],
   "posts": [
