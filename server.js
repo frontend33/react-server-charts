@@ -16,11 +16,11 @@ app.use(cors());
 app.use(bodyParser.json())
 
 // Initial set of deals to the database
-var defaultDeals = [
+var defaultDeals = { deals: [
     { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 7 },
     { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 8 },
     { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 9 }
-];
+]};
 
 db.get("deals").defaults(defaultDeals).write()
 

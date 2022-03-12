@@ -22,26 +22,10 @@ const App = () => {
             .then((response) => console.log(response))
     }, [])
 
-    const id = "GAXU_bL7H--qhTzDZtDsf'"
-
-    const onDeleteRow = useCallback(() => {
-        fetch(`http://localhost:8080/api/newDeal/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            // body: JSON.stringify({id: 'GAXU_bL7H--qhTzDZtDsf'})
-        })
-            .then((response) => response.json())
-            .then((response) => console.log(response))
-    }, [])
-
     return (
         <div className="App">
             <header className="App-header">
                 <button onClick={onAddRow}>Added</button>
-
-                <button onClick={onDeleteRow}>Deleted</button>
             </header>
 
             <TableDeals deals={deals} setDeals={setDeals}/>
