@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "name": "Brad Pitt"
+    },
+    {
+      "name": "Ed Norton"
+    },
+    {
+      "name": "Denzel Washington"
+    }
+  ],
+  "posts": [
+    {
+      "id": 0,
+      "authorId": 0,
+      "text": "This is first posts"
+    }
+  ],
+  "authors": [
+    {
+      "id": 0,
+      "name": "Dennis"
+    }
+  ]
+}

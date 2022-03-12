@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  useEffect( () => {
+      fetch("http://localhost:8080/users", {
+        method: "get"
+      }).then(response => console.log('response', response))
+  },[])
+
   return (
     <div className="App">
       <header className="App-header">
