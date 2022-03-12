@@ -1,18 +1,30 @@
-import React, {useEffect} from 'react';
-import logo from './logo.svg';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 
 function App() {
   useEffect( () => {
-      fetch("http://localhost:8080/users", {
+      fetch("http://localhost:8080/deals", {
         method: "get"
       }).then(response => console.log('response', response))
   },[])
 
+    const onAddedRow = useCallback(() => {
+
+        fetch("http://localhost:8080/newTest", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({user: 'test'})
+        }).then(response => response.json()).then(response => console.log(response))
+    },[])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+          <button onClick={onAddedRow}>
+              Added
+          </button>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
