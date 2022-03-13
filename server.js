@@ -16,9 +16,17 @@ app.use(bodyParser.json())
 
 var defaultDeals = {
     dealsList: [
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2015-03-15T13:03:00Z", value: 7 },
-        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2015-03-20T13:03:00Z", value: 8 },
-        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2015-03-30T13:03:00Z", value: 9 }
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-01T19:42:08.739Z", value: 1 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-02T19:42:08.739Z", value: 2 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-03T19:42:08.739Z", value: 3 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-04T19:42:08.739Z", value: 4 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-05T19:42:08.739Z", value: 5 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-06T19:42:08.739Z", value: 6 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-07T19:42:08.739Z", value: 7 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-08T19:42:08.739Z", value: 8 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-09T19:42:08.739Z", value: 9 },
+        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-10T19:42:08.739Z", value: 10 },
+        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-20T19:42:08.739Z", value: 11 }
     ],
     isNext: true
    };
@@ -43,7 +51,7 @@ app.get("/api/v1/deals", function(request, response, next) {
 
 // Create a new deal
 app.post('/api/v1/newDeal', (request, response) => {
-    const note = request.params
+    const note = request.body
     db.get("deals.dealsList")
         .push({
         ...note, id: nanoid()
@@ -51,6 +59,7 @@ app.post('/api/v1/newDeal', (request, response) => {
     response.json({ success: true })
 })
 
+// Delete deal by id
 app.delete('/api/v1/newDeal/:id', function(request, response) {
     const id = request.params.id;
     db.get('deals.dealsList').remove({ id }).write();

@@ -1,0 +1,28 @@
+.containerContent {
+  margin-left: 40px;
+  min-height: 300px;
+}
+
+.modalContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.inputForm {
+  padding-top: 20px;
+  width: 400px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+
+.button {
+  margin-right: 10px;
+}
+
+.containerTranslate {
+  margin-bottom: 10px;
+}

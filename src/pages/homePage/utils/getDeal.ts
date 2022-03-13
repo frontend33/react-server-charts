@@ -1,5 +1,3 @@
-import {Deal} from '../index.typings'
-
 type GetDealRequest = {
     setContext: (value: any) => void;
     page: number;
@@ -13,7 +11,7 @@ export const getDeals = ({ page, deals, setContext }:GetDealRequest) => {
         method: 'get',
     }).then((response) => response.json())
         .then((response) => {
-            let dealsList = !!deals?.dealsList.length ? deals.dealsList.concat(response) : response.dealsList
+            let dealsList = !!deals?.dealsList.length ? deals.dealsList.concat(response.dealsList) : response.dealsList
             let dealsData = {
                 dealsList,
                 isNext: response.isNext

@@ -11,11 +11,10 @@ import {DealRow} from './components/DealRow'
 import Button from "@mui/material/Button";
 import {Context} from "../../App";
 import {getDeals} from "./utils/getDeal";
+import "./index.css"
 
 export const TableDeals:FC<any> = ({activeRow}: any) => {
-    console.log('activeRow activeRow', activeRow)
     const [context, setContext] = useContext(Context);
-
     const { page, deals } = context
 
     const onNextClick = useCallback(() => {
@@ -24,7 +23,7 @@ export const TableDeals:FC<any> = ({activeRow}: any) => {
             ...context,
             page: parseInt(page) + 1
         })
-    },[page, deals])
+    },[page, deals, context])
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -43,11 +42,12 @@ export const TableDeals:FC<any> = ({activeRow}: any) => {
                     ))}
                 </TableBody>
             </Table>
-            {
-                deals.isNext && <Button size="small" variant="contained" onClick={onNextClick}>Load next page</Button>
-            }
-
         </TableContainer>
+            {
+                deals.isNext && <div className="loadButton">
+                    <Button size="small" variant="contained" onClick={onNextClick}>Load next page</Button>
+                </div>
+            }
         </Paper>
     );
 }
