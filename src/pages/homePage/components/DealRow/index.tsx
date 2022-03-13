@@ -10,8 +10,6 @@ import {Context} from '../../../../App'
 export const DealRow:FC<DealProps> = ({deal, activeRow}) => {
     const [context, setContext] = useContext(Context);
 
-    const { page } = context
-
     const onDeleteRow = useCallback(() => {
         fetch(`http://localhost:8080/api/v1/newDeal/${deal.id}`, {
             method: 'DELETE',
@@ -20,7 +18,7 @@ export const DealRow:FC<DealProps> = ({deal, activeRow}) => {
             },
         })
             .then((response) => response.json())
-            .then(() => getDeals({ page, setContext}))
+            .then(() => getDeals({ page: 1, setContext}))
     }, [])
 
     const isActiveRow = activeRow === deal.id

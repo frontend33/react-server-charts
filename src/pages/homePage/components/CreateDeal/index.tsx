@@ -29,7 +29,7 @@ export const CreateDeal = () => {
     const [date, setDate] = useState( datetime);
     const [context, setContext] = useContext(Context);
 
-    const { page, setNotify } = context
+    const { setNotify } = context
 
     const handleChangeValueDeal = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValueDeal(event.target.value);
@@ -52,7 +52,7 @@ export const CreateDeal = () => {
             date: new Date(currentdate.getTime() - currentdate.getTimezoneOffset() * 60000).toISOString()
         };
 
-        createDeals({deal, page, setContext, setNotify })
+        createDeals({deal, page: 1, setContext, setNotify })
 
         setOpenModal(false);
     };
