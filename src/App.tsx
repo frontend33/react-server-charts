@@ -21,7 +21,7 @@ const App = () => {
     }, [])
 
     const onAddRow = useCallback(() => {
-        fetch('http://localhost:8080/newDeal', {
+        fetch('http://localhost:8080/api/v1/newDeal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

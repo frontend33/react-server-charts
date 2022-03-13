@@ -26,7 +26,7 @@ var defaultDeals = {
 db.get("deals").defaults(defaultDeals).write()
 
 // Send user data - used by client.js
-app.get("/deals", function(request, response, next) {
+app.get("/api/v1/deals", function(request, response, next) {
     const page = parseInt(request.query.page)
     const limit = parseInt(request.query.limit)
     const startIndex = (page - 1) * limit
@@ -42,7 +42,7 @@ app.get("/deals", function(request, response, next) {
 });
 
 // Create a new deal
-app.post('/newDeal', (request, response) => {
+app.post('/api/v1/newDeal', (request, response) => {
     const note = request.params
     db.get("deals.dealsList")
         .push({
@@ -51,9 +51,9 @@ app.post('/newDeal', (request, response) => {
     response.json({ success: true })
 })
 
-app.delete('/api/newDeal/:id', function(request, response) {
+app.delete('/api/v1/newDeal/:id', function(request, response) {
     const id = request.params.id;
-    db.get('deals').remove({ id }).write();
+    db.get('deals.dealsList').remove({ id }).write();
     response.json({ success: true })
 });
 

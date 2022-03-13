@@ -13,7 +13,7 @@ export const DealRow:FC<DealProps> = ({deal, activeRow}) => {
     const { page } = context
 
     const onDeleteRow = useCallback(() => {
-        fetch(`http://localhost:8080/api/newDeal/${deal.id}`, {
+        fetch(`http://localhost:8080/api/v1/newDeal/${deal.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

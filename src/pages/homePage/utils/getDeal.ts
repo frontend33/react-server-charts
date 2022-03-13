@@ -9,7 +9,7 @@ type GetDealRequest = {
 const limit = 10
 
 export const getDeals = ({ page, deals, setContext }:GetDealRequest) => {
-    fetch(`http://localhost:8080/deals?page=${page}&limit=${limit}`, {
+    fetch(`http://localhost:8080/api/v1/deals?page=${page}&limit=${limit}`, {
         method: 'get',
     }).then((response) => response.json())
         .then((response) => {
