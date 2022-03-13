@@ -2,89 +2,56 @@
   "deals": {
     "dealsList": [
       {
-        "id": "GAXU_bL7H--qhTzDZtDsf",
-        "date": "2022-03-01T19:42:08.739Z",
-        "value": 1
-      },
-      {
-        "id": "GAXU_bL73H--qhTzDZtDsf",
-        "date": "2022-03-02T19:42:08.739Z",
-        "value": 2
-      },
-      {
-        "id": "GAXU_b2L7H--qhTzDZtDsf",
-        "date": "2022-03-03T19:42:08.739Z",
-        "value": 3
-      },
-      {
-        "id": "GAXU4_bL7H--qhTzDZtDsf",
-        "date": "2022-03-04T19:42:08.739Z",
-        "value": 4
-      },
-      {
-        "id": "GAXU_6bL7H--qhTzDZtDsf",
-        "date": "2022-03-05T19:42:08.739Z",
-        "value": 5
-      },
-      {
-        "id": "GAXU_bL77H--qhTzDZtDsf",
-        "date": "2022-03-06T19:42:08.739Z",
-        "value": 6
-      },
-      {
-        "id": "GAXU_bL78H--qhTzDZtDsf",
-        "date": "2022-03-07T19:42:08.739Z",
-        "value": 7
-      },
-      {
-        "id": "GAXU_bL547H--qhTzDZtDsf",
-        "date": "2022-03-08T19:42:08.739Z",
-        "value": 8
-      },
-      {
-        "id": "GAXU_21bL7H--qhTzDZtDsf",
-        "date": "2022-03-08T19:42:08.739Z",
-        "value": 9
-      },
-      {
-        "id": "GAXU_bL754H--qhTzDZtDsf",
+        "id": "GAXU_bL10H--qhTzDZtDsf",
         "date": "2022-03-13T19:42:08.739Z",
-        "value": 10
+        "value": 81
       },
       {
-        "id": "GAXU_bL8trH--qhTzDZtDsf",
-        "date": "2022-03-14T19:42:08.739Z",
-        "value": 11
+        "id": "GAXU_bL9H--qhTzDZtDsf",
+        "date": "2022-03-13T19:41:08.739Z",
+        "value": 70
       },
       {
-        "id": "GAXU_rebL9H--qhTzDZtDsf",
-        "date": "2022-03-20T19:42:08.739Z",
+        "id": "GAXU_bL8H--qhTzDZtDsf",
+        "date": "2022-03-09T19:40:08.739Z",
+        "value": 60
+      },
+      {
+        "id": "GAXU_bL7H--qhTzDZtDsf",
+        "date": "2022-03-08T19:39:08.739Z",
+        "value": 50
+      },
+      {
+        "id": "GAXU_bL6H--qhTzDZtDsf",
+        "date": "2022-03-07T19:38:08.739Z",
+        "value": 40
+      },
+      {
+        "id": "GAXU_bL5H--qhTzDZtDsf",
+        "date": "2022-03-06T19:37:08.739Z",
+        "value": 30
+      },
+      {
+        "id": "GAXU_bL4H--qhTzDZtDsf",
+        "date": "2022-03-05T19:36:08.739Z",
+        "value": 20
+      },
+      {
+        "id": "GAXU_bL3H--qhTzDZtDsf",
+        "date": "2022-03-04T19:35:08.739Z",
         "value": 12
       },
       {
-        "value": "33",
-        "date": "2022-03-31T12:00:00.000Z",
-        "id": "uuuu43uuuu4-amsuuuuuuuu"
+        "id": "GAXU_bL2H--qhTzDZtDsf",
+        "date": "2022-03-03T19:34:08.739Z",
+        "value": 10
       },
       {
-        "value": "322333",
-        "date": "2022-04-01T12:00:00.000Z",
-        "id": "K4uuMVuuuuuuuuuu-0dos"
+        "id": "GAXU_bL7H--qhTzDZtDsf",
+        "date": "2022-03-01T19:32:08.739Z",
+        "value": 1
       }
     ],
     "isNext": true
-  },
-  "posts": [
-    {
-      "id": 0,
-      "authorId": 0,
-      "text": "This is first posts"
-    }
-  ],
-  "authors": [
-    {
-      "id": 0,
-      "name": "Dennis"
-    }
-  ]
+  }
 }

@@ -43,7 +43,7 @@ export const ChartsLine = () => {
             deals.dealsList.forEach((deal: any) => {
                 options.data[0].dataPoints.push({
                     x: new Date(deal.date),
-                    y: deal.value,
+                    y: Number(deal.value),
                     id: deal.id,
                 })
             })

@@ -4,9 +4,10 @@ type GetDealRequest = {
     setContext: (value: any) => void;
     page: number;
     deal: any;
+    setNotify?: (value: boolean) => void;
 }
 
-export const createDeals = ({ page, setContext, deal }:GetDealRequest) => {
+export const createDeals = ({ page, setContext, deal, setNotify }:GetDealRequest) => {
     fetch('http://localhost:8080/api/v1/newDeal', {
         method: 'POST',
         headers: {
@@ -15,5 +16,9 @@ export const createDeals = ({ page, setContext, deal }:GetDealRequest) => {
         body: JSON.stringify({...deal}),
     })
         .then((response) => response.json())
-        .then(() => getDeals({ page, setContext }))
+        .then(() => {
+            console.log('create', setNotify)
+            setNotify && setNotify(true)
+            getDeals({ page, setContext })}
+        )
 }

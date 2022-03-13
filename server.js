@@ -1,12 +1,12 @@
-var express = require("express");
-var low = require("lowdb");
-var FileSync = require("lowdb/adapters/FileSync");
-var path = require("path");
-var cors = require('cors');
+let express = require("express");
+let low = require("lowdb");
+let FileSync = require("lowdb/adapters/FileSync");
+let path = require("path");
+let cors = require('cors');
 const adapter = new FileSync('db.json')
-var db = low(adapter);
-var app = express();
-var bodyParser = require("body-parser");
+let db = low(adapter);
+let app = express();
+let bodyParser = require("body-parser");
 const { nanoid } = require("nanoid")
 const srcPath = __dirname;
 app.use(express.static(path.join(srcPath, "public")));
@@ -14,36 +14,44 @@ app.use(express.static(path.join(srcPath, "public")));
 app.use(cors());
 app.use(bodyParser.json())
 
-var defaultDeals = {
+let defaultDeals = {
     dealsList: [
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-01T19:42:08.739Z", value: 1 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-02T19:42:08.739Z", value: 2 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-03T19:42:08.739Z", value: 3 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-04T19:42:08.739Z", value: 4 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-05T19:42:08.739Z", value: 5 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-06T19:42:08.739Z", value: 6 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-07T19:42:08.739Z", value: 7 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-08T19:42:08.739Z", value: 8 },
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-09T19:42:08.739Z", value: 9 },
-        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-10T19:42:08.739Z", value: 10 },
-        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-20T19:42:08.739Z", value: 11 }
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-01T19:32:08.739Z", value: 1 },
+        { id: "GAXU_bL1H--qhTzDZtDsf", date: "2022-03-02T19:33:08.739Z", value: 5 },
+        { id: "GAXU_bL2H--qhTzDZtDsf", date: "2022-03-03T19:34:08.739Z", value: 10 },
+        { id: "GAXU_bL3H--qhTzDZtDsf", date: "2022-03-04T19:35:08.739Z", value: 12 },
+        { id: "GAXU_bL4H--qhTzDZtDsf", date: "2022-03-05T19:36:08.739Z", value: 20 },
+        { id: "GAXU_bL5H--qhTzDZtDsf", date: "2022-03-06T19:37:08.739Z", value: 30 },
+        { id: "GAXU_bL6H--qhTzDZtDsf", date: "2022-03-07T19:38:08.739Z", value: 40 },
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-08T19:39:08.739Z", value: 50 },
+        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-09T19:40:08.739Z", value: 60 },
+        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-13T19:41:08.739Z", value: 70 },
+        { id: "GAXU_bL10H--qhTzDZtDsf",date: "2022-03-13T19:42:08.739Z", value: 81 }
     ],
     isNext: true
    };
 
 db.get("deals").defaults(defaultDeals).write()
 
-// Send user data - used by client.js
+// deals data - used by client.js
 app.get("/api/v1/deals", function(request, response, next) {
-    const page = parseInt(request.query.page)
-    const limit = parseInt(request.query.limit)
+    const page = parseInt(request.query.page) || 1
+    const limit = parseInt(request.query.limit) || 10
+    const isDesc = parseInt(request.query.isDesc) || false
     const startIndex = (page - 1) * limit
     const endIndex = page * limit
 
-    var deals = db.get("deals").value(); // finds all entries in the deals table
+    let deals = db.get("deals").value(); // finds all entries in the deals table
+    let dealsValue = db.get("deals.dealsList").value(); // finds all entries in the deals table
+
+    let dealsList = dealsValue.sort(function(a, b) {
+        let c = new Date(a.date);
+        let d = new Date(b.date);
+        return isDesc ? c-d : d - c;
+    });
 
     const result = {
-        dealsList: deals?.dealsList?.length ? deals.dealsList.slice(startIndex, endIndex): [],
+        dealsList: deals?.dealsList?.length ? dealsList.slice(startIndex, endIndex): [],
         isNext: deals?.dealsList.length >= endIndex
     }
     response.send(JSON.stringify(result));
@@ -71,7 +79,7 @@ app.get("/", function(request, response) {
 });
 
 // Listen on port 8080
-var listener = app.listen(8080, function() {
+let listener = app.listen(8080, function() {
     console.log( srcPath + "/build/index.html")
     console.log("Listening on port " + listener.address().port);
 });

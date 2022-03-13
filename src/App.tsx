@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { ChartsLine } from './pages/homePage/components/ChartsLine'
 import { TableDeals } from './pages/homePage'
@@ -7,6 +7,7 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { CreateDeal } from './pages/homePage/components/CreateDeal'
+import { TransitionAlerts } from './pages/homePage/components/TransitionAlerts'
 
 export const Context = React.createContext<any>(null)
 
@@ -17,8 +18,18 @@ const App = () => {
     })
     const [page, setPage] = useState(1)
     const [activeRow, setActiveRow] = useState('')
+    const [notify, setNotify] = useState(false)
 
-    const [context, setContext] = useState({ setDeals, page, setPage, deals, activeRow, setActiveRow })
+    const [context, setContext] = useState({
+        setDeals,
+        page,
+        setPage,
+        deals,
+        activeRow,
+        setActiveRow,
+        notify,
+        setNotify,
+    })
 
     useEffect(() => {
         getDeals({ page, setContext })
@@ -33,8 +44,8 @@ const App = () => {
                     </Typography>
                     <CreateDeal />
                 </Toolbar>
-
                 <ChartsLine />
+                <TransitionAlerts notify={notify} setNotify={setNotify} />
                 <TableDeals activeRow={activeRow} />
             </AppBar>
         </Context.Provider>

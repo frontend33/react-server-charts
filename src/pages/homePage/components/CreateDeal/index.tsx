@@ -11,22 +11,31 @@ import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
 import Toolbar from '@mui/material/Toolbar';
 import DialogActions from '@mui/material/DialogActions';
-import { DatePicker } from '../DatePicker'
 import { createDeals } from '../../utils/createDeal'
 import './index.css'
 import {Context} from "../../../../App";
 
 export const CreateDeal: FC<any> = memo(() => {
+    const currentdate = new Date();
+    const datetime =  currentdate.getDate() + "/"
+        + (currentdate.getMonth()+1)  + "/"
+        + currentdate.getFullYear() + "   "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+
     const [openModal, setOpenModal] = React.useState(false);
     const [valueDeal, setValueDeal] = useState<any>('');
-    const [date, setDate] = useState( new Date());
+    const [date, setDate] = useState( datetime);
     const [context, setContext] = useContext(Context);
 
-    const { page } = context
+    const { page, setNotify } = context
 
     const handleChangeValueDeal = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValueDeal(event.target.value);
     };
+
+    const handleChangeEmpty = () => null
 
     const handleOpen = () => {
         setOpenModal(true);
@@ -40,10 +49,10 @@ export const CreateDeal: FC<any> = memo(() => {
         const deal = {
             value: valueDeal,
             // TODO with local zone
-            date:  new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString()
+            date: new Date(currentdate.getTime() - currentdate.getTimezoneOffset() * 60000).toISOString()
         };
 
-        createDeals({deal, page, setContext })
+        createDeals({deal, page, setContext, setNotify })
 
         setOpenModal(false);
     };
@@ -54,7 +63,7 @@ export const CreateDeal: FC<any> = memo(() => {
                 <AddIcon /> <span>New deal</span>
             </Button>
 
-            <Dialog className="modalContainer" maxWidth="lg" open={openModal} onClose={handleClose}>
+            <Dialog className="modalContainer" maxWidth="md" open={openModal} onClose={handleClose}>
                 <AppBar sx={{ position: 'relative' }}>
                     <Toolbar>
                         <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
@@ -66,18 +75,19 @@ export const CreateDeal: FC<any> = memo(() => {
                 <DialogContent>
                     <div className="containerContent">
                         <div className="inputForm">
-                            <FormControl sx={{ m: 1, width: 350 }}>
+                            <FormControl sx={{ m: 1, width: 320 }}>
                                 <div className="containerTranslate">
                                     <InputLabel shrink htmlFor="select-multiple-native">
                                         <span>date</span>
                                     </InputLabel>
                                 </div>
-                                <DatePicker startDate={date} setStartDate={setDate} />
+                                <TextField disabled variant="outlined" value={date} onChange={handleChangeEmpty}></TextField>
+
                             </FormControl>
                         </div>
 
                         <div className="inputForm">
-                            <FormControl sx={{ m: 1, width: 350 }}>
+                            <FormControl sx={{ m: 1, width: 320 }}>
                                 <div className="containerTranslate">
                                       <span>value</span>
                                 </div>
@@ -89,7 +99,7 @@ export const CreateDeal: FC<any> = memo(() => {
 
                 <DialogActions>
                     <div className="buttonContainer">
-                        <div className="button>">
+                        <div className="button">
                             <Button variant="text" onClick={handleClose}>
                                 Cancel
                             </Button>
