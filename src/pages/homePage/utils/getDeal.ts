@@ -13,7 +13,6 @@ export const getDeals = ({ page, deals, setContext }:GetDealRequest) => {
         method: 'get',
     }).then((response) => response.json())
         .then((response) => {
-            console.log('deals', deals, response)
             let dealsList = !!deals?.dealsList.length ? deals.dealsList.concat(response) : response.dealsList
             let dealsData = {
                 dealsList,

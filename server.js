@@ -3,7 +3,6 @@ var low = require("lowdb");
 var FileSync = require("lowdb/adapters/FileSync");
 var path = require("path");
 var cors = require('cors');
-// var adapter = new FileSync("/sandbox/db/database.json");
 const adapter = new FileSync('db.json')
 var db = low(adapter);
 var app = express();
@@ -17,9 +16,9 @@ app.use(bodyParser.json())
 
 var defaultDeals = {
     dealsList: [
-        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 7 },
-        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 8 },
-        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2022-03-12T15:16:16.090Z", value: 9 }
+        { id: "GAXU_bL7H--qhTzDZtDsf", date: "2015-03-15T13:03:00Z", value: 7 },
+        { id: "GAXU_bL8H--qhTzDZtDsf", date: "2015-03-20T13:03:00Z", value: 8 },
+        { id: "GAXU_bL9H--qhTzDZtDsf", date: "2015-03-30T13:03:00Z", value: 9 }
     ],
     isNext: true
    };

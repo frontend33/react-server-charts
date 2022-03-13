@@ -12,10 +12,11 @@ import Button from "@mui/material/Button";
 import {Context} from "../../App";
 import {getDeals} from "./utils/getDeal";
 
-export const TableDeals:FC = () => {
+export const TableDeals:FC<any> = ({activeRow}: any) => {
+    console.log('activeRow activeRow', activeRow)
     const [context, setContext] = useContext(Context);
 
-    const { setDeals, page, deals } = context
+    const { page, deals } = context
 
     const onNextClick = useCallback(() => {
         getDeals({deals, setContext, page: parseInt(page) + 1})
@@ -26,7 +27,8 @@ export const TableDeals:FC = () => {
     },[page, deals])
 
     return (
-        <TableContainer component={Paper}>
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -37,7 +39,7 @@ export const TableDeals:FC = () => {
                 </TableHead>
                 <TableBody>
                     {!!deals?.dealsList.length && deals.dealsList.map((row: any) => (
-                        <DealRow key={row.id} deal={row}/>
+                        <DealRow activeRow={activeRow} key={row.id} deal={row}/>
                     ))}
                 </TableBody>
             </Table>
@@ -46,6 +48,7 @@ export const TableDeals:FC = () => {
             }
 
         </TableContainer>
+        </Paper>
     );
 }
 

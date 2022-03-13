@@ -1,4 +1,4 @@
-import  React, {useContext} from 'react';
+import React, {useContext} from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import {FC, useCallback} from "react";
@@ -7,7 +7,7 @@ import {DeleteConfirm} from '../DeleteConfirm'
 import {getDeals} from "../../utils/getDeal";
 import {Context} from '../../../../App'
 
-export const DealRow:FC<DealProps> = ({deal}) => {
+export const DealRow:FC<DealProps> = ({deal, activeRow}) => {
     const [context, setContext] = useContext(Context);
 
     const { page } = context
@@ -21,13 +21,15 @@ export const DealRow:FC<DealProps> = ({deal}) => {
         })
             .then((response) => response.json())
             .then(() => getDeals({ page, setContext}))
-            // .then((response) => console.log(response))
     }, [])
+
+    const isActiveRow = activeRow === deal.id
 
     return (
             <TableRow
                 key={deal.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                selected={isActiveRow}
             >
                 <TableCell component="th" scope="row">
                     {deal.value}
