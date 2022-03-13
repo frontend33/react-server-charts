@@ -1,9 +1,10 @@
 import {getDeals} from './getDeal'
+import { Deal } from '../index.typings'
 
 type GetDealRequest = {
     setContext: (value: any) => void;
     page: number;
-    deal: any;
+    deal?: Deal;
     setNotify?: (value: boolean) => void;
 }
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {FC} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,14 +6,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {FC, useCallback, useContext} from "react";
+import {useCallback, useContext} from "react";
 import {DealRow} from './components/DealRow'
 import Button from "@mui/material/Button";
 import {Context} from "../../App";
 import {getDeals} from "./utils/getDeal";
+import { Deal } from '../homePage/index.typings'
 import "./index.css"
 
-export const TableDeals:FC<any> = ({activeRow}: any) => {
+type TableDealsProps = {
+  activeRow: string
+}
+
+export const TableDeals:FC<TableDealsProps> = ({activeRow}) => {
     const [context, setContext] = useContext(Context);
     const { page, deals } = context
 
@@ -37,7 +42,7 @@ export const TableDeals:FC<any> = ({activeRow}: any) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {!!deals?.dealsList.length && deals.dealsList.map((row: any) => (
+                    {!!deals?.dealsList.length && deals.dealsList.map((row: Deal) => (
                         <DealRow activeRow={activeRow} key={row.id} deal={row}/>
                     ))}
                 </TableBody>

@@ -1,10 +1,9 @@
-import React, { memo, FC } from 'react';
+import React, {FC} from 'react';
 import './index.css';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {getDeals} from '../../utils/getDeal'
 
 const style = {
   position: 'absolute' as any,
@@ -18,7 +17,11 @@ const style = {
   p: 4,
 };
 
-export const DeleteConfirm: FC<any> = memo(({onDeleteRow}) => {
+type DeleteConfirmProps = {
+  onDeleteRow: () => void
+}
+
+export const DeleteConfirm: FC<DeleteConfirmProps> = ({onDeleteRow}) => {
   const [openModal, setOpenModal] = React.useState(false);
 
   const handleOpen = () => {
@@ -63,4 +66,4 @@ export const DeleteConfirm: FC<any> = memo(({onDeleteRow}) => {
       </Modal>
     </div>
   );
-});
+}

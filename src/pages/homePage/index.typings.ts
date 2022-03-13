@@ -1,10 +1,10 @@
 export type Deal = {
-    id: string;
-    date: Date;
+    id?: string;
+    date: Date | string;
     value: number;
 }
 
 export interface Deals {
-    deals: Deal[],
+    dealsList: Deal[];
+    isNext: boolean;
 }
-

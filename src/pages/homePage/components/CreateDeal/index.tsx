@@ -1,4 +1,4 @@
-import React, {memo, FC, useState, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import FormControl from '@mui/material/FormControl';
@@ -15,7 +15,7 @@ import { createDeals } from '../../utils/createDeal'
 import './index.css'
 import {Context} from "../../../../App";
 
-export const CreateDeal: FC<any> = memo(() => {
+export const CreateDeal = () => {
     const currentdate = new Date();
     const datetime =  currentdate.getDate() + "/"
         + (currentdate.getMonth()+1)  + "/"
@@ -25,7 +25,7 @@ export const CreateDeal: FC<any> = memo(() => {
         + currentdate.getSeconds();
 
     const [openModal, setOpenModal] = React.useState(false);
-    const [valueDeal, setValueDeal] = useState<any>('');
+    const [valueDeal, setValueDeal] = useState('');
     const [date, setDate] = useState( datetime);
     const [context, setContext] = useContext(Context);
 
@@ -47,8 +47,8 @@ export const CreateDeal: FC<any> = memo(() => {
 
     const onSaveRow = () => {
         const deal = {
-            value: valueDeal,
-            // TODO with local zone
+            value: Number(valueDeal),
+            // TODO with local time zone
             date: new Date(currentdate.getTime() - currentdate.getTimezoneOffset() * 60000).toISOString()
         };
 
@@ -113,4 +113,4 @@ export const CreateDeal: FC<any> = memo(() => {
             </Dialog>
         </div>
     );
-});
+}
